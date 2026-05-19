@@ -3,38 +3,85 @@ package com.ether.damage
 /**
  * A항, 공격력
  */
-data class AttackPower(
-    val character: Int,
-    val weapon: Int,
-    val necklace: Int,
-    val pet: Int,
-    val fashion: Int,
-    val enchant: Int,
-    val runeWord: Int,
-    val paladin: Int,
-) : DamageTerm {
-    override fun toValue(): Int = character + weapon + necklace + pet + fashion + enchant + runeWord + paladin
+data class BaseAttackPower(
+    val character: Character, // TODO: 항 분리, 각각에 대한 고려를 어떻게 할지는 추후에 생각하자
+    val weapon: Weapon,       // TODO: 항 분리, 각각에 대한 고려를 어떻게 할지는 추후에 생각하자
+    val necklace: Long,
+    val pet: Long,
+    val fashion: Long,
+    val enchant: Long,
+    val runeWord: Long,
+    val justice: Long,
+) {
+    fun calculate(): Double =
+        character.calculate() + weapon.calculate() + necklace + pet + fashion + enchant + runeWord + justice
+
+    data class Character(
+        val levelBase: Long = 1990,
+        val cards: Long,
+        val titles: Long,
+    ) {
+        fun calculate(): Long = levelBase + cards + titles
+    }
+
+    data class Weapon(
+        val base: Long,
+        val rune: Long,
+        val seal: Long,
+        val skilled: Long,
+        val emblemPercentage: Double,
+        val statBonus: Double,
+    ) {
+        fun calculate(): Double = (base + rune + seal + skilled) * (1 + emblemPercentage / 100) + statBonus
+    }
+
 }
 
 /**
  * B항, 공격력 증가
  */
-data class AttackPowerAmplifier(
-    val item: Int,
-    val skill: Int,
-    val enchant: Int,
-) : DamageTerm {
-    override fun toValue(): Int = TODO()
+data class BaseAttackPowerAmplifier(
+    val itemPercentage: Double,
+    val skillPercentage: Double,
+    val enchantPercentage: Double,
+) : Factor {
+
+    override fun calculate(): Double {
+        val itemFactor = itemPercentage / 100
+        val skillFactor = skillPercentage / 100
+        val enchantFactor = enchantPercentage / 100
+        return 1 + itemFactor + skillFactor + enchantFactor
+    }
+
+}
+
+/**
+ * 스탯창 공격력, rounddown(A*B, 0)
+ */
+data class AttackPower(
+    val base: BaseAttackPower,
+    val amplifier: BaseAttackPowerAmplifier,
+) {
+
+    fun calculate(): Long = (base.calculate() * amplifier.calculate()).toLong()
+
 }
 
 /**
  * C장, 피해 증가
  */
 data class DamageAmplifier(
-    val give: Int,
-    val take: Int,
-) : DamageTerm {
-    override fun toValue(): Int = TODO()
+    val givePercentage: Double,
+    val takePercentage: Double,
+) : Factor {
+
+    // TODO: 여기는 보강해야 함
+    override fun calculate(): Double {
+        val giveFactor = givePercentage / 100
+        val takeFactor = takePercentage / 100
+        return 1 + giveFactor + takeFactor
+    }
+
 }
 
 /**
@@ -42,12 +89,43 @@ data class DamageAmplifier(
  */
 data class StrikeEnhancement(
     val chain: Int,
+    val chainAmplifier: Int,
     val heavy: Int,
+    val heavyAmplifier: Int,
     val aoe: Int,
+    val aoeAmplifier: Int,
     val combo: Int,
-    val ult: Int,
-) : DamageTerm {
-    override fun toValue(): Int = TODO()
+    val comboAmplifier: Int,
+    val ultimate: Int,
+    val ultimateAmplifier: Int,
+) : Factor {
+
+    // TODO: 가동률을 고려하는 게 더 합리적일 듯
+    override fun calculate(): Double {
+        val chainFactor = calculateChainFactor(chain, chainAmplifier)
+        val heavyFactor = calculateHeavyFactor(heavy, heavyAmplifier)
+        val aoeFactor = calculateAoeFactor(aoe, aoeAmplifier)
+        val comboFactor = calculateComboFactor(combo, comboAmplifier)
+        val ultimateFactor = calculateUltimateFactor(ultimate, ultimateAmplifier)
+        return 1 + chainFactor + heavyFactor + aoeFactor + comboFactor + ultimateFactor
+    }
+
+    // TODO: 공통 부분이 반복되고 있으니 이 형태를 정의하는 게 좋을 것
+    private fun calculateChainFactor(stat: Int, statPercentage: Int): Double =
+        (1 + stat / 8500.0) * (1 + statPercentage / 100.0) - 1
+
+    private fun calculateHeavyFactor(stat: Int, statPercentage: Int): Double =
+        (1 + stat / 8500.0) * (1 + statPercentage / 100.0) - 1
+
+    private fun calculateAoeFactor(stat: Int, statPercentage: Int): Double =
+        (1 + stat / 8500.0) * (1 + statPercentage / 100.0) - 1
+
+    private fun calculateComboFactor(stat: Int, statPercentage: Int): Double =
+        (1 + stat / 8500.0) * (1 + statPercentage / 100.0) - 1
+
+    private fun calculateUltimateFactor(stat: Int, statPercentage: Int): Double =
+        (1 + stat / 8500.0) * (1 + statPercentage / 100.0) - 1
+
 }
 
 /**
@@ -60,8 +138,8 @@ data class Jewel(
     val elemental: Int,
     val survival: Int,
     val interrupting: Int,
-) : DamageTerm {
-    override fun toValue(): Int = 0
+) : Factor {
+    override fun calculate(): Double = 0.0
 }
 
 /**
@@ -69,10 +147,18 @@ data class Jewel(
  */
 data class Critical(
     val critical: Int,
-) : DamageTerm {
-    override fun toValue(): Int = TODO()
-    private fun probability() : Int = TODO()
-    private fun amplifier() : Int = TODO()
+) : Factor {
+
+    override fun calculate(): Double = 1 + probability() * (factor() - 1)
+
+    private fun probability(): Double {
+        TODO()
+    }
+
+    private fun factor(): Double {
+        TODO()
+    }
+
 }
 
 /**
@@ -80,15 +166,15 @@ data class Critical(
  */
 data class Vulnerable(
     val breaking: Int,
-) : DamageTerm {
-    override fun toValue(): Int = TODO()
+) : Value {
+    override fun calculate(): Long = TODO()
 }
 
 /**
  * H항, 스킬 계수 강화
  */
-class SkillFactorAmplifier : DamageTerm {
-    override fun toValue(): Int = TODO()
+class SkillFactorAmplifier : Value {
+    override fun calculate(): Long = TODO()
 }
 
 /**
@@ -96,16 +182,16 @@ class SkillFactorAmplifier : DamageTerm {
  */
 data class DefenseReduction(
     val defense: Int,
-) : DamageTerm {
-    override fun toValue(): Int = TODO()
+) : Value {
+    override fun calculate(): Long = TODO()
 }
 
 /**
  * J항, 카운터
  */
 class Counter(
-) : DamageTerm {
-    override fun toValue(): Int = TODO()
+) : Value {
+    override fun calculate(): Long = TODO()
 }
 
 /**
@@ -113,8 +199,8 @@ class Counter(
  */
  data class AdditionalHit(
     val additionalHit: Int,
- ) : DamageTerm {
-    override fun toValue(): Int = TODO()
+ ) : Value {
+    override fun calculate(): Long = TODO()
  }
 
 /**
@@ -123,8 +209,8 @@ class Counter(
 data class FinalDamageAmplifier(
     val give: Int,
     val take: Int,
-) : DamageTerm {
-    override fun toValue(): Int = TODO()
+) : Value {
+    override fun calculate(): Long = TODO()
 }
 
 /**
@@ -132,10 +218,10 @@ data class FinalDamageAmplifier(
  */
 data class SkillFactor(
     val level: Int,
-) : DamageTerm {
-    override fun toValue(): Int = TODO()
+) : Value {
+    override fun calculate(): Long = TODO()
 }
 
-class Etcs() : DamageTerm {
-    override fun toValue(): Int = TODO()
+class Etcs() : Value {
+    override fun calculate(): Long = TODO()
 }
