@@ -4,20 +4,20 @@ package com.ether.damage
  * A항, 공격력
  */
 data class BaseAttackPower(
-    val character: Character, // TODO: 항 분리, 각각에 대한 고려를 어떻게 할지는 추후에 생각하자
-    val weapon: Weapon,       // TODO: 항 분리, 각각에 대한 고려를 어떻게 할지는 추후에 생각하자
-    val necklace: Long,
+    val character: Character,
+    val weapon: Weapon,
+    val necklaceSeal: Long,
     val pet: Long,
     val fashion: Long,
-    val enchant: Long,
+    val enchant: Long, // 오른쪽 장비 인챈트
     val runeWord: Long,
     val justice: Long,
 ) {
     fun calculate(): Double =
-        character.calculate() + weapon.calculate() + necklace + pet + fashion + enchant + runeWord + justice
+        character.calculate() + weapon.calculate() + necklaceSeal + pet + fashion + enchant + runeWord + justice
 
     data class Character(
-        val levelBase: Long = 1990,
+        val levelBase: Long = 1990, // 이게 대체 뭘까
         val cards: Long,
         val titles: Long,
     ) {
@@ -62,9 +62,7 @@ data class AttackPower(
     val base: BaseAttackPower,
     val amplifier: BaseAttackPowerAmplifier,
 ) {
-
     fun calculate(): Long = (base.calculate() * amplifier.calculate()).toLong()
-
 }
 
 /**
