@@ -43,7 +43,13 @@ internal class BaseAttackPowerTest {
         println(String.format("amplifier: %.3f", amplifier.calculate()))
 
         val statusAttack = AttackPower(baseAttackPower, amplifier)
-        Assertions.assertEquals(statusAttack.calculate(), 31531)
+
+        val actualTotalAttackPower = 31531L
+        val actualBaseAttackPower = actualTotalAttackPower / amplifier.calculate()
+        val actualCharacterLevelAttackPower = actualBaseAttackPower - (character.cards + character.titles + weapon.calculate() + baseAttackPower.necklaceSeal + baseAttackPower.pet + baseAttackPower.fashion + baseAttackPower.enchant + baseAttackPower.runeWord + baseAttackPower.justice)
+        println("actual character level attack power: %.2f".format(actualCharacterLevelAttackPower))
+
+        Assertions.assertEquals(statusAttack.calculate(), actualTotalAttackPower)
     }
 
     @Test
@@ -55,12 +61,12 @@ internal class BaseAttackPowerTest {
         println(String.format("character attack value: %d", character.calculate()))
 
         val weapon = BaseAttackPower.Weapon(
-            base = 3324,
-            rune = 4285,
+            base = 3321,
+            rune = 550,
             seal = 500,
-            skilled = 1395,
-            emblemPercentage = 42.8,
-            statBonus = 2793.6 + 1388.8,
+            skilled = 3100,
+            emblemPercentage = 0.0,
+            statBonus = 2083.2 + 1308,
         )
         println(String.format("weapon attack value: %.2f", weapon.calculate()))
 
@@ -70,21 +76,27 @@ internal class BaseAttackPowerTest {
             necklaceSeal = 250,
             pet = 0,
             fashion = 310,
-            enchant = 204 * 6,
+            enchant = 204 * 5,
             runeWord = 690,
-            justice = 867,
+            justice = 878,
         )
         println(String.format("base attack value: %.2f", baseAttackPower.calculate()))
 
         val amplifier = BaseAttackPowerAmplifier(
-            itemPercentage = 22.0,
+            itemPercentage = 20.0,
             skillPercentage = 0.0,
-            enchantPercentage = 1.7 * 4,
+            enchantPercentage = 1.7 * 3,
         )
         println(String.format("amplifier: %.3f", amplifier.calculate()))
 
         val statusAttack = AttackPower(baseAttackPower, amplifier)
-        Assertions.assertEquals(statusAttack.calculate(), 31878)
+
+        val actualTotalAttackPower = 22105L
+        val actualBaseAttackPower = actualTotalAttackPower / amplifier.calculate()
+        val actualCharacterLevelAttackPower = actualBaseAttackPower - (character.cards + character.titles + weapon.calculate() + baseAttackPower.necklaceSeal + baseAttackPower.pet + baseAttackPower.fashion + baseAttackPower.enchant + baseAttackPower.runeWord + baseAttackPower.justice)
+        println("actual character level attack power: %.2f".format(actualCharacterLevelAttackPower))
+
+        Assertions.assertEquals(statusAttack.calculate(), actualTotalAttackPower)
     }
 
 }

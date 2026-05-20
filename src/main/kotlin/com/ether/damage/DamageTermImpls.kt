@@ -17,7 +17,7 @@ data class BaseAttackPower(
         character.calculate() + weapon.calculate() + necklaceSeal + pet + fashion + enchant + runeWord + justice
 
     data class Character(
-        val levelBase: Long = 1990, // 이게 대체 뭘까
+        val levelBase: Long = 1995,
         val cards: Long,
         val titles: Long,
     ) {
