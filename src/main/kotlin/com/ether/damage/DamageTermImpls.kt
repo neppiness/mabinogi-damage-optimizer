@@ -1,5 +1,8 @@
 package com.ether.damage
 
+import kotlin.math.roundToInt
+import kotlin.math.roundToLong
+
 /**
  * A항, 공격력
  */
@@ -62,7 +65,7 @@ data class AttackPower(
     val base: BaseAttackPower,
     val amplifier: BaseAttackPowerAmplifier,
 ) {
-    fun calculate(): Long = (base.calculate() * amplifier.calculate()).toLong()
+    fun calculate(): Long = (base.calculate() * amplifier.calculate()).roundToLong()
 }
 
 /**
