@@ -1,6 +1,5 @@
 package com.ether.damage
 
-import kotlin.math.roundToInt
 import kotlin.math.roundToLong
 
 /**
@@ -16,7 +15,7 @@ data class BaseAttackPower(
     val runeWord: Long,
     val justice: Long,
 ) {
-    fun calculate(): Double =
+    fun calculate(): Long =
         character.calculate() + weapon.calculate() + necklaceSeal + pet + fashion + enchant + runeWord + justice
 
     data class Character(
@@ -35,7 +34,7 @@ data class BaseAttackPower(
         val emblemPercentage: Double,
         val statBonus: Double,
     ) {
-        fun calculate(): Double = (base + rune + seal + skilled) * (1 + emblemPercentage / 100) + statBonus
+        fun calculate(): Long = ((base + rune + seal + skilled) * (1 + emblemPercentage / 100) + statBonus).roundToLong()
     }
 
 }
