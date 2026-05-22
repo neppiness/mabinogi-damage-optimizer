@@ -71,15 +71,27 @@ data class AttackPower(
  * C장, 피해 증가
  */
 data class DamageAmplifier(
-    val givePercentage: Double,
-    val takePercentage: Double,
+    val given: Given,
+    val taken: Taken,
 ) : Factor {
 
-    // TODO: 여기는 보강해야 함
-    override fun calculate(): Double {
-        val giveFactor = givePercentage / 100
-        val takeFactor = takePercentage / 100
-        return 1 + giveFactor + takeFactor
+    override fun calculate(): Double = given.calculate() * taken.calculate()
+
+    data class Given(
+        val skillPower: Int,
+        val skillPowerPercentage: Double,
+        val heliodor: Double,
+        val itemGivenDamagePercentage: Double,
+        val synergyDamageIncrease: Double,
+    ) {
+        fun calculate(): Double = 1 + (skillPower / 8500.0) * (1 + skillPowerPercentage / 100) + heliodor + itemGivenDamagePercentage / 100 + synergyDamageIncrease / 100
+    }
+
+    data class Taken(
+        val armorBreakPercentage: Double,
+        val synergyDamageIncreasePercentage: Double,
+    ) {
+        fun calculate(): Double = 1 + armorBreakPercentage / 100 + synergyDamageIncreasePercentage / 100
     }
 
 }
