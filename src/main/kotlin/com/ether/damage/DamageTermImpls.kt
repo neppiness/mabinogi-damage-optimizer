@@ -8,6 +8,7 @@ import kotlin.math.roundToLong
 data class BaseAttackPower(
     val character: Character,
     val weapon: Weapon,
+    val necklace: Long,
     val necklaceSeal: Long,
     val pet: Long,
     val fashion: Long,
@@ -15,11 +16,12 @@ data class BaseAttackPower(
     val runeWord: Long,
     val justice: Long,
 ) {
+
     fun calculate(): Long =
-        character.calculate() + weapon.calculate() + necklaceSeal + pet + fashion + enchant + runeWord + justice
+        character.calculate() + weapon.calculate() + necklace + necklaceSeal + pet + fashion + enchant + runeWord + justice
 
     data class Character(
-        val levelBase: Long = 1995,
+        val levelBase: Long = 1498,
         val cards: Long,
         val titles: Long,
     ) {
@@ -64,7 +66,7 @@ data class AttackPower(
     val base: BaseAttackPower,
     val amplifier: BaseAttackPowerAmplifier,
 ) {
-    fun calculate(): Long = (base.calculate() * amplifier.calculate()).roundToLong()
+    fun calculate(): Long = (base.calculate() * amplifier.calculate()).toLong()
 }
 
 /**
@@ -101,15 +103,15 @@ data class DamageAmplifier(
  */
 data class StrikeEnhancement(
     val chain: Int,
-    val chainAmplifier: Int,
+    val chainAmplifier: Double,
     val heavy: Int,
-    val heavyAmplifier: Int,
+    val heavyAmplifier: Double,
     val aoe: Int,
-    val aoeAmplifier: Int,
+    val aoeAmplifier: Double,
     val combo: Int,
-    val comboAmplifier: Int,
+    val comboAmplifier: Double,
     val ultimate: Int,
-    val ultimateAmplifier: Int,
+    val ultimateAmplifier: Double,
 ) : Factor {
 
     override fun calculate(): Double {
@@ -121,19 +123,19 @@ data class StrikeEnhancement(
         return 1 + chainFactor + heavyFactor + aoeFactor + comboFactor + ultimateFactor
     }
 
-    private fun calculateChainFactor(stat: Int, statPercentage: Int): Double =
+    private fun calculateChainFactor(stat: Int, statPercentage: Double): Double =
         (1 + stat / 8500.0) * (1 + statPercentage / 100.0) - 1
 
-    private fun calculateHeavyFactor(stat: Int, statPercentage: Int): Double =
+    private fun calculateHeavyFactor(stat: Int, statPercentage: Double): Double =
         (1 + stat / 8500.0) * (1 + statPercentage / 100.0) - 1
 
-    private fun calculateAoeFactor(stat: Int, statPercentage: Int): Double =
+    private fun calculateAoeFactor(stat: Int, statPercentage: Double): Double =
         (1 + stat / 8500.0) * (1 + statPercentage / 100.0) - 1
 
-    private fun calculateComboFactor(stat: Int, statPercentage: Int): Double =
+    private fun calculateComboFactor(stat: Int, statPercentage: Double): Double =
         (1 + stat / 8500.0) * (1 + statPercentage / 100.0) - 1
 
-    private fun calculateUltimateFactor(stat: Int, statPercentage: Int): Double =
+    private fun calculateUltimateFactor(stat: Int, statPercentage: Double): Double =
         (1 + stat / 8500.0) * (1 + statPercentage / 100.0) - 1
 
 }
@@ -142,13 +144,14 @@ data class StrikeEnhancement(
  * E항, 보석
  */
 data class Jewel(
-    val chain: Int,
-    val heavy: Int,
-    val sub: Int,
-    val elemental: Int,
-    val survival: Int,
-    val interrupting: Int,
+    val chainPercentage: Double,
+    val heavyPercentage: Double,
+    val subPercentage: Double,
+    val elementalPercentage: Double,
+    val survivalPercentage: Double,
+    val interruptingPercentage: Double,
 ) : Factor {
+    // 특정 스킬에 대한 보석 반영분만 계산하기 위해 필요
     override fun calculate(): Double = 0.0
 }
 
