@@ -8,16 +8,16 @@ internal class DamageAmplifierTest {
     fun neppinessTest() {
         val given = DamageAmplifier.Given(
             skillPower = 1758,
-            skillPowerPercentage = 0.0,
-            heliodor = 0.0,
-            itemGivenDamagePercentage = 21.0 + 26.0,
-            synergyDamageIncrease = 0.0,
+            skillPowerIncrementPercent = 0.0,
+            heliodorPercent = 0.0,
+            itemGivenDamagePercent = 21.0 + 26.0,
+            synergyDamageIncreasePercent = 0.0,
         )
         println(String.format("주는 피해 증가 계수: %.3f", given.calculate()))
 
         val taken = DamageAmplifier.Taken(
-            armorBreakPercentage = 0.0,
-            synergyDamageIncreasePercentage = 10.0,
+            armorBreakPercent = 0.0,
+            synergyDamageIncrementPercent = 10.0,
         )
         println(String.format("받는 피해 증가 계수: %.3f", taken.calculate()))
 

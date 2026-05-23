@@ -18,7 +18,7 @@ internal class BaseAttackPowerTest {
             rune = 4285,
             seal = 500,
             skilled = 1395,
-            emblemPercentage = 42.8,
+            emblemPercent = 42.8,
             statBonus = 2806.2 + 1394.0,
         )
         println(String.format("weapon attack value: %d", weapon.calculate()))
@@ -36,9 +36,9 @@ internal class BaseAttackPowerTest {
         println(String.format("base attack value: %d", baseAttackPower.calculate()))
 
         val amplifier = BaseAttackPowerAmplifier(
-            itemPercentage = 20.0,
-            skillPercentage = 0.0,
-            enchantPercentage = 1.7 * 4,
+            itemPercent = 20.0,
+            skillPercent = 0.0,
+            enchantPercent = 1.7 * 4,
         )
         println(String.format("amplifier: %.3f", amplifier.calculate()))
 
@@ -65,7 +65,7 @@ internal class BaseAttackPowerTest {
             rune = 4296,
             seal = 500,
             skilled = 465,
-            emblemPercentage = 42.8,
+            emblemPercent = 42.8,
             statBonus = 2719.2 + 1764,
         )
         println(String.format("weapon attack value: %d", weapon.calculate()))
@@ -83,9 +83,9 @@ internal class BaseAttackPowerTest {
         println(String.format("base attack value: %d", baseAttackPower.calculate()))
 
         val amplifier = BaseAttackPowerAmplifier(
-            itemPercentage = 22.0,
-            skillPercentage = 0.0,
-            enchantPercentage = 1.7 * 4,
+            itemPercent = 22.0,
+            skillPercent = 0.0,
+            enchantPercent = 1.7 * 4,
         )
         println(String.format("amplifier: %.3f", amplifier.calculate()))
 

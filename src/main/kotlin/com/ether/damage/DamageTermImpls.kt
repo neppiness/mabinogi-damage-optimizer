@@ -31,10 +31,10 @@ data class BaseAttackPower(
         val rune: Long,
         val seal: Long,
         val skilled: Long,
-        val emblemPercentage: Double,
+        val emblemPercent: Double,
         val statBonus: Double,
     ) {
-        fun calculate(): Long = ((base + rune + seal + skilled) * (1 + emblemPercentage / 100) + statBonus).roundToLong()
+        fun calculate(): Long = ((base + rune + seal + skilled) * (1 + emblemPercent / 100) + statBonus).roundToLong()
     }
 
 }
@@ -43,15 +43,15 @@ data class BaseAttackPower(
  * B항, 공격력 증가
  */
 data class BaseAttackPowerAmplifier(
-    val itemPercentage: Double,
-    val skillPercentage: Double,
-    val enchantPercentage: Double,
+    val itemPercent: Double,
+    val skillPercent: Double,
+    val enchantPercent: Double,
 ) : Factor {
 
     override fun calculate(): Double {
-        val itemFactor = itemPercentage / 100
-        val skillFactor = skillPercentage / 100
-        val enchantFactor = enchantPercentage / 100
+        val itemFactor = itemPercent / 100
+        val skillFactor = skillPercent / 100
+        val enchantFactor = enchantPercent / 100
         return 1 + itemFactor + skillFactor + enchantFactor
     }
 
@@ -79,19 +79,19 @@ data class DamageAmplifier(
 
     data class Given(
         val skillPower: Int,
-        val skillPowerPercentage: Double,
-        val heliodor: Double,
-        val itemGivenDamagePercentage: Double,
-        val synergyDamageIncrease: Double,
+        val skillPowerIncrementPercent: Double,
+        val heliodorPercent: Double,
+        val itemGivenDamagePercent: Double,
+        val synergyDamageIncreasePercent: Double,
     ) {
-        fun calculate(): Double = 1 + (skillPower / 8500.0) * (1 + skillPowerPercentage / 100) + heliodor + itemGivenDamagePercentage / 100 + synergyDamageIncrease / 100
+        fun calculate(): Double = 1 + (skillPower / 8500.0) * (1 + skillPowerIncrementPercent / 100) + heliodorPercent / 100 + itemGivenDamagePercent / 100 + synergyDamageIncreasePercent / 100
     }
 
     data class Taken(
-        val armorBreakPercentage: Double,
-        val synergyDamageIncreasePercentage: Double,
+        val armorBreakPercent: Double,
+        val synergyDamageIncrementPercent: Double,
     ) {
-        fun calculate(): Double = 1 + armorBreakPercentage / 100 + synergyDamageIncreasePercentage / 100
+        fun calculate(): Double = 1 + armorBreakPercent / 100 + synergyDamageIncrementPercent / 100
     }
 
 }
@@ -112,7 +112,6 @@ data class StrikeEnhancement(
     val ultimateAmplifier: Int,
 ) : Factor {
 
-    // TODO: 가동률을 고려하는 게 더 합리적일 듯
     override fun calculate(): Double {
         val chainFactor = calculateChainFactor(chain, chainAmplifier)
         val heavyFactor = calculateHeavyFactor(heavy, heavyAmplifier)
@@ -122,7 +121,6 @@ data class StrikeEnhancement(
         return 1 + chainFactor + heavyFactor + aoeFactor + comboFactor + ultimateFactor
     }
 
-    // TODO: 공통 부분이 반복되고 있으니 이 형태를 정의하는 게 좋을 것
     private fun calculateChainFactor(stat: Int, statPercentage: Int): Double =
         (1 + stat / 8500.0) * (1 + statPercentage / 100.0) - 1
 
@@ -141,7 +139,7 @@ data class StrikeEnhancement(
 }
 
 /**
- * E항, 보석. 체급 계산에는 굳이 필요 없을 것
+ * E항, 보석
  */
 data class Jewel(
     val chain: Int,
