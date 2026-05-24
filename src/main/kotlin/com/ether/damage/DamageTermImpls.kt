@@ -189,7 +189,7 @@ data class Vulnerable(
 }
 
 /**
- * H항, 스킬 계수 강화
+ * H항, 스킬 계수 강화, TODO
  */
 class SkillFactorAmplifier : Factor {
     override fun calculate(): Double = 1.0
@@ -217,20 +217,20 @@ class Counter(
 /**
  * K항, 추가타
  */
- data class AdditionalHit(
+data class AdditionalHit(
     val additionalHit: Int,
- ) : Value {
-    override fun calculate(): Long = TODO()
- }
+    val additionalHitIncrementPercent: Double,
+) : Factor {
+    override fun calculate(): Double = 1 + ((1 + additionalHit / 13000.0) * (1 + additionalHitIncrementPercent / 100) - 1)
+}
 
 /**
  * L항, 최종 데미지 증가
  */
 data class FinalDamageAmplifier(
-    val give: Int,
-    val take: Int,
-) : Value {
-    override fun calculate(): Long = TODO()
+    val finalDamageIncrementPercent: Double,
+) : Factor {
+    override fun calculate(): Double = 1 + finalDamageIncrementPercent / 100
 }
 
 /**
