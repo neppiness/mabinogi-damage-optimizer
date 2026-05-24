@@ -166,8 +166,8 @@ data class Critical(
 
     override fun calculate(): Double = 1 + probability() * (multiplier() - 1)
 
-    private fun probability(): Double = (0.5 - 1 / (2 + stat / 1000.0) + probabilityIncrementPercent / 100).coerceAtMost(1.0)
-    private fun multiplier(): Double = (1.4 + stat / 5000.0) * (1 + damageIncrementPercent / 100)
+    fun probability(): Double = (0.5 - 1 / (2 + stat / 1000.0) + probabilityIncrementPercent / 100).coerceAtMost(1.0)
+    fun multiplier(): Double = (1.4 + stat / 5000.0) * (1 + damageIncrementPercent / 100)
 
 }
 
@@ -176,8 +176,16 @@ data class Critical(
  */
 data class Vulnerable(
     val breaking: Int,
-) : Value {
-    override fun calculate(): Long = TODO()
+    val vulnerableIncrementPercent: Double,
+    val isBreakExtend: Boolean,
+) : Factor {
+
+    override fun calculate(): Double {
+        val tagDamageIncrementPercent = 0.0 // TODO
+        val multiplier = (1 + breaking / 5250) * (1 + vulnerableIncrementPercent / 100) + (20 + tagDamageIncrementPercent) / 100.0
+        return if (isBreakExtend) multiplier * 2 else multiplier
+    }
+
 }
 
 /**
