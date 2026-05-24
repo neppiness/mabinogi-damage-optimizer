@@ -141,7 +141,7 @@ data class StrikeEnhancement(
 }
 
 /**
- * E항, 보석
+ * E항, 보석: 특정 스킬에 대한 보석 반영분만 계산하기 위해 필요
  */
 data class Jewel(
     val chainPercentage: Double,
@@ -151,7 +151,6 @@ data class Jewel(
     val survivalPercentage: Double,
     val interruptingPercentage: Double,
 ) : Factor {
-    // 특정 스킬에 대한 보석 반영분만 계산하기 위해 필요
     override fun calculate(): Double = 0.0
 }
 
