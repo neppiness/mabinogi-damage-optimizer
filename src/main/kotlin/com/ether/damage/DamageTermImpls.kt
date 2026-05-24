@@ -103,40 +103,40 @@ data class DamageAmplifier(
  */
 data class StrikeEnhancement(
     val chain: Int,
-    val chainAmplifier: Double,
+    val chainMultiplierPercent: Double,
     val heavy: Int,
-    val heavyAmplifier: Double,
+    val heavyMultiplierPercent: Double,
     val aoe: Int,
-    val aoeAmplifier: Double,
+    val aoeMultiplierPercent: Double,
     val combo: Int,
-    val comboAmplifier: Double,
+    val comboMultiplierPercent: Double,
     val ultimate: Int,
-    val ultimateAmplifier: Double,
+    val ultimateMultiplierPercent: Double,
 ) : Factor {
 
     override fun calculate(): Double {
-        val chainFactor = calculateChainFactor(chain, chainAmplifier)
-        val heavyFactor = calculateHeavyFactor(heavy, heavyAmplifier)
-        val aoeFactor = calculateAoeFactor(aoe, aoeAmplifier)
-        val comboFactor = calculateComboFactor(combo, comboAmplifier)
-        val ultimateFactor = calculateUltimateFactor(ultimate, ultimateAmplifier)
+        val chainFactor = calculateChainFactor()
+        val heavyFactor = calculateHeavyFactor()
+        val aoeFactor = calculateAoeFactor()
+        val comboFactor = calculateComboFactor()
+        val ultimateFactor = calculateUltimateFactor()
         return 1 + chainFactor + heavyFactor + aoeFactor + comboFactor + ultimateFactor
     }
 
-    private fun calculateChainFactor(stat: Int, statPercentage: Double): Double =
-        (1 + stat / 8500.0) * (1 + statPercentage / 100.0) - 1
+    fun calculateChainFactor(): Double =
+        (1 + chain / 8500.0) * (1 + chainMultiplierPercent / 100.0) - 1
 
-    private fun calculateHeavyFactor(stat: Int, statPercentage: Double): Double =
-        (1 + stat / 8500.0) * (1 + statPercentage / 100.0) - 1
+    fun calculateHeavyFactor(): Double =
+        (1 + heavy / 8500.0) * (1 + heavyMultiplierPercent / 100.0) - 1
 
-    private fun calculateAoeFactor(stat: Int, statPercentage: Double): Double =
-        (1 + stat / 8500.0) * (1 + statPercentage / 100.0) - 1
+    fun calculateAoeFactor(): Double =
+        (1 + aoe / 8500.0) * (1 + aoeMultiplierPercent / 100.0) - 1
 
-    private fun calculateComboFactor(stat: Int, statPercentage: Double): Double =
-        (1 + stat / 8500.0) * (1 + statPercentage / 100.0) - 1
+    fun calculateComboFactor(): Double =
+        (1 + combo / 8500.0) * (1 + comboMultiplierPercent / 100.0) - 1
 
-    private fun calculateUltimateFactor(stat: Int, statPercentage: Double): Double =
-        (1 + stat / 8500.0) * (1 + statPercentage / 100.0) - 1
+    fun calculateUltimateFactor(): Double =
+        (1 + ultimate / 8500.0) * (1 + ultimateMultiplierPercent / 100.0) - 1
 
 }
 
@@ -159,18 +159,15 @@ data class Jewel(
  * F항, 치명타
  */
 data class Critical(
-    val critical: Int,
+    val stat: Int,
+    val probabilityIncrementPercent: Double, // 치명타 확률 증가: 룬, 캐릭터, 던전 보너스
+    val damageIncrementPercent: Double, // 치명타 데미지 증가: 룬,
 ) : Factor {
 
-    override fun calculate(): Double = 1 + probability() * (factor() - 1)
+    override fun calculate(): Double = 1 + probability() * (multiplier() - 1)
 
-    private fun probability(): Double {
-        TODO()
-    }
-
-    private fun factor(): Double {
-        TODO()
-    }
+    private fun probability(): Double = (0.5 - 1 / (2 + stat / 1000.0) + probabilityIncrementPercent / 100).coerceAtMost(1.0)
+    private fun multiplier(): Double = (1.4 + stat / 5000.0) * (1 + damageIncrementPercent / 100)
 
 }
 
