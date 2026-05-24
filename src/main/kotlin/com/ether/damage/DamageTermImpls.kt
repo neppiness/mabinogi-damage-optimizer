@@ -191,25 +191,27 @@ data class Vulnerable(
 /**
  * H항, 스킬 계수 강화
  */
-class SkillFactorAmplifier : Value {
-    override fun calculate(): Long = TODO()
+class SkillFactorAmplifier : Factor {
+    override fun calculate(): Double = 1.0
 }
 
 /**
  * I항, 방어력 감소율
  */
 data class DefenseReduction(
-    val defense: Int,
-) : Value {
-    override fun calculate(): Long = TODO()
+    val enemyDefense: Int,
+    val defenseReduction: Double,
+) : Factor {
+    override fun calculate(): Double = 1 / (1 + enemyDefense * (1 - defenseReduction / 100) / 10328)
 }
 
 /**
  * J항, 카운터
  */
 class Counter(
-) : Value {
-    override fun calculate(): Long = TODO()
+    val isCounter: Boolean,
+) : Factor {
+    override fun calculate(): Double = if (isCounter) 1.1 else 1.0
 }
 
 /**
