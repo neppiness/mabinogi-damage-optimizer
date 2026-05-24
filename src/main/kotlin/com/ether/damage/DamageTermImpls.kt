@@ -237,10 +237,10 @@ data class FinalDamageAmplifier(
  */
 data class SkillFactor(
     val level: Int,
-) : Value {
-    override fun calculate(): Long = TODO()
+) : Factor {
+    override fun calculate(): Double = TODO()
 }
 
-class Etcs() : Value {
-    override fun calculate(): Long = TODO()
+class Etcs() : Factor {
+    override fun calculate(): Double = TODO()
 }
