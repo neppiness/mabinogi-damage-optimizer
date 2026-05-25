@@ -1,9 +1,6 @@
 package com.ether.stat
 
 data class SubStats(
-    val attack: Int = 0,                 // 공격력
-    val defense: Int = 0,                // 방어력
-
     val breaking: Int = 0,               // 브레이크
     val damageReduction: Int = 0,        // 피해 감소
     val heavyStrike: Int = 0,            // 강타 강화
@@ -25,6 +22,7 @@ data class SubStats(
     val additionalHit: Int = 0,          // 추가타
 ) {
 
+    // 이 항을 통해서 그외 아이템을 통해 상승되는 분량을 확인할 수 있음
     fun reflection(mainStats: MainStats): SubStats {
         return SubStats(
             breaking = mainStats.strength / 4,
@@ -51,9 +49,6 @@ data class SubStats(
 
     operator fun plus(rightTerm: SubStats): SubStats {
         return SubStats(
-            attack = attack + rightTerm.attack,
-            defense = defense + rightTerm.defense,
-
             breaking = breaking + rightTerm.breaking,
             damageReduction = damageReduction + rightTerm.damageReduction,
             heavyStrike = heavyStrike + rightTerm.heavyStrike,
