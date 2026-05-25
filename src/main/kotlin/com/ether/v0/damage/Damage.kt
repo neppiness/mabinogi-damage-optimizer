@@ -1,8 +1,8 @@
 package com.ether.v0.damage
 
 import com.ether.v0.rune.Rune
-import com.ether.v0.stat.MainStats
-import com.ether.v0.stat.SubStats
+import com.ether.stat.MainStats
+import com.ether.stat.SubStats
 
 data class Damage(
     val mainStats: MainStats,

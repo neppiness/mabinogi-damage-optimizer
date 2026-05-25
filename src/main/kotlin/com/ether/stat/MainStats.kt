@@ -1,4 +1,4 @@
-package com.ether.v0.stat
+package com.ether.stat
 
 data class MainStats(
     val strength: Int, // 힘
@@ -6,15 +6,4 @@ data class MainStats(
     val intelligence: Int, // 지력
     val will: Int, // 의지
     val luck: Int, // 행운
-) {
-
-    enum class Type {
-        STRENGTH,
-        SKILL,
-        INTELLIGENCE,
-        WILL,
-        LUCK,
-        ;
-    }
-
-}
+)
