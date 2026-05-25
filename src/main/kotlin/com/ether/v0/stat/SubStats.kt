@@ -1,4 +1,4 @@
-package com.ether.stat;
+package com.ether.v0.stat
 
 // TODO: 네이밍 다시 해보기
 data class SubStats(

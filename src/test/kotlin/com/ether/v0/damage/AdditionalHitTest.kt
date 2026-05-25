@@ -1,5 +1,6 @@
-package com.ether.damage
+package com.ether.v0.damage
 
+import com.ether.v0.damage.AdditionalHit
 import org.junit.jupiter.api.Test
 
 internal class AdditionalHitTest {
