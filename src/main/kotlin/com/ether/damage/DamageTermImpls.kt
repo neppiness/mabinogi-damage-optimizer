@@ -12,7 +12,7 @@ data class BaseAttackPower(
     val necklaceSeal: Long,
     val pet: Long,
     val fashion: Long,
-    val enchant: Long, // 오른쪽 장비 인챈트
+    val enchant: Long, // 오른쪽 장비 인챈트 공격력항
     val runeWord: Long,
     val justice: Long,
 ) {
