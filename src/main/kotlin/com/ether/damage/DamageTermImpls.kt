@@ -1,4 +1,4 @@
-package com.ether.v0.damage
+package com.ether.damage
 
 import kotlin.math.roundToLong
 

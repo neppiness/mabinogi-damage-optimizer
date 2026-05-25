@@ -1,6 +1,6 @@
-package com.ether.v0.equipment
+package com.ether.equipment
 
-import com.ether.v0.character.CharacterType
+import com.ether.character.CharacterType
 
 data class Weapon(
     val characterType : CharacterType,

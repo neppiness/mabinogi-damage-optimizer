@@ -1,6 +1,6 @@
-package com.ether.v0.damage
+package com.ether.damage
 
-import com.ether.v0.damage.DamageAmplifier
+import com.ether.damage.DamageAmplifier
 import org.junit.jupiter.api.Test
 
 internal class DamageAmplifierTest {

@@ -1,6 +1,6 @@
-package com.ether.v0.damage
+package com.ether.damage
 
-import com.ether.v0.rune.Rune
+import com.ether.rune.Rune
 import com.ether.stat.MainStats
 import com.ether.stat.SubStats
 

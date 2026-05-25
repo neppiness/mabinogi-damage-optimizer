@@ -1,4 +1,4 @@
-package com.ether.v0.character
+package com.ether.character
 
 enum class CharacterType {
     WARRIOR, // 전사

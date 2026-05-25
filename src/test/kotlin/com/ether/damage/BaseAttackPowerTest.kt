@@ -1,8 +1,8 @@
-package com.ether.v0.damage
+package com.ether.damage
 
-import com.ether.v0.damage.AttackPower
-import com.ether.v0.damage.BaseAttackPower
-import com.ether.v0.damage.BaseAttackPowerAmplifier
+import com.ether.damage.AttackPower
+import com.ether.damage.BaseAttackPower
+import com.ether.damage.BaseAttackPowerAmplifier
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 

@@ -1,6 +1,6 @@
-package com.ether.v0.damage
+package com.ether.damage
 
-import com.ether.v0.damage.FinalDamageAmplifier
+import com.ether.damage.FinalDamageAmplifier
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 

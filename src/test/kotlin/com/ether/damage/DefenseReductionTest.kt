@@ -1,6 +1,6 @@
-package com.ether.v0.damage
+package com.ether.damage
 
-import com.ether.v0.damage.DefenseReduction
+import com.ether.damage.DefenseReduction
 import org.junit.jupiter.api.Test
 
 internal class DefenseReductionTest {
