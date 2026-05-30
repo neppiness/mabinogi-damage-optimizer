@@ -1,4 +1,4 @@
-package com.ether.damage
+package com.ether.domain.damage
 
 import org.junit.jupiter.api.Test
 

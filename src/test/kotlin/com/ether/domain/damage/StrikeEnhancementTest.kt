@@ -1,6 +1,6 @@
-package com.ether.damage
+package com.ether.domain.damage
 
-import com.ether.damage.StrikeEnhancement
+import com.ether.domain.damage.StrikeEnhancement
 import org.junit.jupiter.api.Test
 
 internal class StrikeEnhancementTest {

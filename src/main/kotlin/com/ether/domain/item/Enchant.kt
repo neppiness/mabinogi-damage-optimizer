@@ -1,4 +1,4 @@
-package com.ether.item
+package com.ether.domain.item
 
 data class Enchant(
     val id: Long,
