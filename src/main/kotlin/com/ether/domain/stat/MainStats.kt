@@ -1,4 +1,4 @@
-package com.ether.stat
+package com.ether.domain.stat
 
 data class MainStats(
     val strength: Int,     // 힘

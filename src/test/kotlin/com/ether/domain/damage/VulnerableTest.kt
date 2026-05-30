@@ -1,6 +1,6 @@
-package com.ether.damage
+package com.ether.domain.damage
 
-import com.ether.damage.Vulnerable
+import com.ether.domain.damage.Vulnerable
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 

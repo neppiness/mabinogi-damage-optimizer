@@ -1,4 +1,4 @@
-package com.ether.item
+package com.ether.domain.item
 
 // 뇌명
 class Thunder : Rune {

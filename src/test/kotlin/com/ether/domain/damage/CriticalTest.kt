@@ -1,6 +1,6 @@
-package com.ether.damage
+package com.ether.domain.damage
 
-import com.ether.damage.Critical
+import com.ether.domain.damage.Critical
 import org.junit.jupiter.api.Test
 
 internal class CriticalTest {

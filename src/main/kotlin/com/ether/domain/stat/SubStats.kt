@@ -1,4 +1,4 @@
-package com.ether.stat
+package com.ether.domain.stat
 
 data class SubStats(
     val breaking: Int = 0,               // 브레이크
