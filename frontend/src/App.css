@@ -1,0 +1,145 @@
+/* Panel */
+.panel {
+  width: 480px;
+  box-sizing: border-box;
+  background: #1a1a2e;
+  border: 1px solid #3a3a5c;
+  border-radius: 10px;
+  padding: 16px;
+  margin: 32px auto;
+  font-family: 'Segoe UI', sans-serif;
+  color: #e0e0e0;
+}
+
+/* Divider */
+.divider {
+  height: 1px;
+  background: #3a3a5c;
+  margin: 12px 0;
+}
+
+/* Primary stats row */
+.primary-stats {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.primary-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  gap: 6px;
+}
+
+.primary-label {
+  font-size: 12px;
+  color: #a0a0c0;
+}
+
+.primary-input {
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 700;
+  color: #f5d76e;
+  background: #12122a;
+  border: 1px solid #3a3a5c;
+  border-radius: 6px;
+  padding: 4px 2px;
+}
+
+/* Combat stats row */
+.combat-stats {
+  display: flex;
+  gap: 12px;
+}
+
+.combat-stat {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  gap: 8px;
+}
+
+.combat-label {
+  font-size: 13px;
+  color: #a0a0c0;
+  white-space: nowrap;
+}
+
+.combat-input {
+  flex: 1;
+  min-width: 0;
+  box-sizing: border-box;
+  text-align: right;
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  background: #12122a;
+  border: 1px solid #3a3a5c;
+  border-radius: 6px;
+  padding: 4px 8px;
+}
+
+/* Secondary stats grid */
+.secondary-stats {
+  display: flex;
+  gap: 0;
+}
+
+.secondary-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.col-divider {
+  width: 1px;
+  background: #3a3a5c;
+  margin: 0 12px;
+}
+
+.stat-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #a0a0c0;
+  white-space: nowrap;
+}
+
+.stat-input {
+  width: 72px;
+  box-sizing: border-box;
+  text-align: right;
+  font-size: 13px;
+  font-weight: 600;
+  color: #e0e0e0;
+  background: #12122a;
+  border: 1px solid #3a3a5c;
+  border-radius: 5px;
+  padding: 3px 6px;
+}
+
+/* Remove number input spin buttons */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+input:focus {
+  outline: none;
+  border-color: #6060b0;
+}
