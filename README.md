@@ -14,7 +14,7 @@
 ## 최종 대미지 공식
 
 ```text
-대미지 = roundup(2 * rounddown(A * B, 0) * C * D * E * F * G * H * I * J * K * L * 스킬계수, 0)
+데미지 = roundup(2 * rounddown(A * B, 0) * C * D * E * F * G * H * I * J * K * L * 스킬계수, 0)
 ```
 
 ### A. 공격력
