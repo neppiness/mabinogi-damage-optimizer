@@ -1,6 +1,4 @@
-package com.ether.item.runes
-
-import com.ether.item.Rune
+package com.ether.item
 
 // 뇌명
 class Thunder : Rune {
