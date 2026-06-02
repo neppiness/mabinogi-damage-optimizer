@@ -98,7 +98,7 @@
 .app-title {
   margin: 0;
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--c-gold);
   letter-spacing: 0.5px;
 }
@@ -141,7 +141,7 @@
 .card-title {
   padding: 9px 16px 8px;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 600;
   border-bottom: 1px solid rgba(255, 255, 255, 0.07);
   text-align: center;
 }
@@ -187,7 +187,7 @@
 
 .stat-header {
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 /* ── Number inputs ── */
@@ -197,7 +197,7 @@
   border-radius: 6px;
   color: #fff;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 400;
   text-align: right;
   padding: 5px 8px;
   outline: none;
@@ -247,7 +247,7 @@
   border-radius: 5px;
   color: #fff;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 400;
   text-align: right;
   padding: 4px 6px;
   outline: none;
@@ -279,7 +279,7 @@
   border-radius: 5px;
   color: #fff;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 400;
   text-align: right;
   padding: 5px 8px;
   outline: none;
@@ -291,7 +291,7 @@
 
 .val-display {
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .emblem-row {
@@ -321,7 +321,7 @@
   background: rgba(255, 255, 255, 0.15);
   color: rgba(255, 255, 255, 0.55);
   font-size: 9px;
-  font-weight: 700;
+  font-weight: 600;
   cursor: help;
   border: none;
   margin-left: 6px;
@@ -370,7 +370,7 @@
   border-radius: 5px;
   color: #fff;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 400;
   text-align: center;
   padding: 4px 5px;
   outline: none;
