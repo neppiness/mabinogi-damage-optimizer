@@ -128,7 +128,7 @@ export default function EquipmentPage() {
 
         {/* 주스탯 */}
         <div className="card">
-          <div className="card-title c-white">주스탯</div>
+          <div className="card-title c-gold">주스탯</div>
           <div className="card-body">
             <div className="main-stats-grid">
               {MAIN_STATS.map(({ label, key, color, focus }) => (
@@ -143,7 +143,7 @@ export default function EquipmentPage() {
 
         {/* 보조스탯 */}
         <div className="card">
-          <div className="card-title c-white">보조스탯</div>
+          <div className="card-title c-gold">보조스탯</div>
           <div className="card-body" style={{ gap: 0 }}>
             <div className="sub-stats-grid">
               <div className="sub-col">
@@ -182,7 +182,7 @@ export default function EquipmentPage() {
 
         {/* 레벨업 보너스 카드 */}
         <div className="card">
-          <div className="card-title c-white">레벨업 보너스 카드 적용 효과</div>
+          <div className="card-title c-gold left">레벨업 보너스 카드 적용 효과</div>
           <div className="card-body">
             <div className="val-row">
               <span className="val-label">공격력</span>
@@ -200,7 +200,7 @@ export default function EquipmentPage() {
 
         {/* 팔라딘 */}
         <div className="card">
-          <div className="card-title c-white">팔라딘</div>
+          <div className="card-title c-gold left">팔라딘</div>
           <div className="card-body">
             <div className="val-row">
               <span className="val-label">정의</span>
@@ -218,7 +218,7 @@ export default function EquipmentPage() {
 
         {/* 룬 워드 효과 */}
         <div className="card">
-          <div className="card-title c-white">선택된 모든 룬 워드 효과</div>
+          <div className="card-title c-gold left">선택된 모든 룬 워드 효과</div>
           <div className="card-body">
             <div className="val-row">
               <span className="val-label">공격력</span>
@@ -279,7 +279,7 @@ export default function EquipmentPage() {
           <div className="card-title c-gold left">무기 공격력</div>
           <div className="card-body">
             <div className="val-row">
-              <span className="val-label c-str">메인 주스탯 보너스</span>
+              <span className="val-label">메인 주스탯 보너스</span>
               <input
                 type="number"
                 className="val-input"
@@ -291,7 +291,7 @@ export default function EquipmentPage() {
               />
             </div>
             <div className="val-row">
-              <span className="val-label c-dex">서브 주스탯 보너스</span>
+              <span className="val-label">서브 주스탯 보너스</span>
               <input
                 type="number"
                 className="val-input"
@@ -303,7 +303,7 @@ export default function EquipmentPage() {
               />
             </div>
             <div className="val-row">
-              <span className="val-label">기본 공격력</span>
+              <span className="val-label c-lck">기본 공격력</span>
               <input
                 type="number"
                 className="val-input"
